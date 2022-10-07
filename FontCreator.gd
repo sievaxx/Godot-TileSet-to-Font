@@ -20,11 +20,10 @@ func add_font_size(page:FontPage):
 	
 	font.set_texture_image(0, Vector2(page.font_size, 0), 0, tex)
 	
-	font.set_cache_ascent(0, page.font_size, 1.0)
-	font.set_cache_descent(0, page.font_size, 11.0)
+	font.set_cache_ascent(0, page.font_size, page.ascent)
+	font.set_cache_descent(0, page.font_size, page.descent)
 	
 	var char_count = source.get_tiles_count()
-	print(char_count)
 	
 	for i in char_count:
 		var tid:Vector2i = source.get_tile_id(i)
@@ -65,8 +64,6 @@ func add_font_size(page:FontPage):
 	pass
 
 func _ready():
-	
-	print("font creator loaded")
 	font = FontFile.new()
 	font.clear_size_cache(0)
 	font.clear_cache()
@@ -77,6 +74,6 @@ func _ready():
 	
 	font.set_fixed_size(-1) # if only using one font size, change this to match that
 	
-	ResourceSaver.save(font, path)
+	var saved = ResourceSaver.save(font, path)
+	print(saved)
 	pass
-
