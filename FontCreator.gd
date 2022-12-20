@@ -75,5 +75,7 @@ func _ready():
 	font.set_fixed_size(-1) # if only using one font size, change this to match that
 	
 	var saved = ResourceSaver.save(font, path)
+	$Label.set("theme_override_fonts/normal_font", font)
 	print(saved)
 	pass
+
